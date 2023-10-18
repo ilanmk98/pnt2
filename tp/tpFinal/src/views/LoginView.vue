@@ -14,13 +14,17 @@
                 </div>
             </form>
             <a class="btn-forgot-password" href="#">¿Olvidaste tu contraseña?</a>
+            <br>
+            <a class="btn-register" href="#">Registrarse</a>
         </div>
     </div>
 </template>
 
+<style>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js">
-    
+</style>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js">
+   
         new Vue({
             el: '#app',
             data: {
@@ -29,10 +33,10 @@
             },
             methods: {
                 login() {
-                   
+                    // Aquí puedes agregar la lógica para manejar la autenticación del usuario.
+                    // Por ejemplo, puedes hacer una solicitud AJAX para verificar las credenciales.
+                    // También puedes utilizar una biblioteca de enrutamiento para Vue.js para navegar a otras páginas.
                 }
             }
         });
-    
-</script>
-
+    </script> -->
