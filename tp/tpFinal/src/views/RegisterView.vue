@@ -1,7 +1,7 @@
 <template>
     <div id="app">
          <div class="register-container">
-             <h1>Registrarse</h1>
+             <h1 class="titulo-registro">Registrarse</h1>
              <form @submit="register">
                  <div class="form-group">
                      <input type="text" placeholder="Usuario" v-model="usuario" required>
@@ -22,8 +22,22 @@
      </div>
  </template>
  
- <style>
- 
+ <style scoped>
+  input {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    button {
+        background-color: #10f136;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+    .titulo-registro{
+        color: #10f136;
+    }
  </style>
  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js">
     
