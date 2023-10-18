@@ -2,7 +2,7 @@
    <div id="app">
         <div class="login-container">
             <h1>Iniciar Sesión</h1>
-            <form @submit="login">
+            <form @submit.prevent="login">
                 <div class="form-group">
                     <input type="text" placeholder="Usuario" v-model="usuario" required>
                 </div>
@@ -23,20 +23,27 @@
 <style>
 
 </style>
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js">
-   
-        new Vue({
-            el: '#app',
-            data: {
-                usuario: '',
-                contrasena: ''
-            },
-            methods: {
-                login() {
-                    // Aquí puedes agregar la lógica para manejar la autenticación del usuario.
-                    // Por ejemplo, puedes hacer una solicitud AJAX para verificar las credenciales.
-                    // También puedes utilizar una biblioteca de enrutamiento para Vue.js para navegar a otras páginas.
-                }
-            }
-        });
-    </script> -->
+ <script>
+  export default {
+  data() {
+    return {
+      usuario: '',
+      contrasena: ''
+    };
+  },
+  methods: {
+    login() {
+      if (this.usuario === 'usuario' && this.contrasena === 'contraseña') {
+        
+        console.log('Inicio de sesión exitoso');
+        this.$router.push('/inicio');
+        
+      } else {
+        
+        console.error('Inicio de sesión fallido');
+      }
+    }
+  }
+};
+      
+    </script> 
