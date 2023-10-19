@@ -3,12 +3,6 @@
 </script>
 
 <template>
-  <header>
-    
-
-   
-  </header>
-
   <RouterView />
 </template>
 
@@ -16,11 +10,13 @@
 header {
   line-height: 1.5;
   max-height: 100vh;
+  
 }
 
 .logo {
   display: block;
   margin: 0 auto 2rem;
+  
 }
 
 nav {
@@ -66,8 +62,8 @@ nav a:first-of-type {
   }
 
   nav {
-    text-align: left;
-    margin-left: -1rem;
+    text-align: center;
+    margin-left: -100rem;
     font-size: 1rem;
 
     padding: 1rem 0;
