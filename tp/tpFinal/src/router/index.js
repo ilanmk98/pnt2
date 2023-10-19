@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import RegisterView from '../views/RegisterView.vue'
-import InicioView from '../views/InicioView.vue'
+import InicioConsumidorView from '../views/InicioConsumidorView.vue'
+import DetalleComida from '../views/detalleComida.vue'
 
 
 const router = createRouter({
@@ -23,9 +24,14 @@ const router = createRouter({
       component:RegisterView
     },
     {
-      path:'/inicio',
-      name:'inicio',
-      component:InicioView
+      path:'/inicioConsumidor',
+      name:'inicioConsumidor',
+      component:InicioConsumidorView
+    },
+    {
+      path:'/detalleComida/:id',
+      name:'detalleComida',
+      component:DetalleComida
     }
   ]
 })
