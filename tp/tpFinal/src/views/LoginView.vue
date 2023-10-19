@@ -2,7 +2,7 @@
    <div id="app">
         <div class="login-container">
             <h1>Iniciar Sesión</h1>
-            <form @submit="login">
+            <form @submit.prevent="cargarLista">
                 <div class="form-group">
                     <input type="text" placeholder="Usuario" v-model="usuario" required>
                 </div>
@@ -15,7 +15,7 @@
             </form>
             <a class="btn-forgot-password" href="#">¿Olvidaste tu contraseña?</a>
             <br>
-            <a class="btn-register" href="#">Registrarse</a>
+            <a class="btn-register" href="/register">Registrarse</a>
         </div>
     </div>
 </template>
@@ -23,20 +23,44 @@
 <style>
 
 </style>
-<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js">
-   
-        new Vue({
-            el: '#app',
-            data: {
-                usuario: '',
-                contrasena: ''
-            },
-            methods: {
-                login() {
-                    // Aquí puedes agregar la lógica para manejar la autenticación del usuario.
-                    // Por ejemplo, puedes hacer una solicitud AJAX para verificar las credenciales.
-                    // También puedes utilizar una biblioteca de enrutamiento para Vue.js para navegar a otras páginas.
-                }
-            }
-        });
-    </script> -->
+ <script>
+ import axios from 'axios'
+  export default {
+  data() {
+    return {
+      usuario: '',
+      contrasena: ''
+    };
+  },
+  methods: {
+    login(param) {
+        console.log(param);
+        const usuarioExiste = param.find(user=>user.username===this.usuario)
+
+      if (usuarioExiste) {
+        console.log("existe");
+        if(usuarioExiste.password=this.contrasena)
+        { console.log('Inicio de sesión exitoso');
+        this.$router.push('/inicioConsumidor');}
+        else
+        { console.error('Inicio de sesión fallido');}
+       
+      } else {
+        alert('Inicio de sesion fallido')
+        console.error('Inicio de sesión fallido');
+      }
+    },
+    async cargarLista(){
+        try {
+         const response = await axios.get("https://653071246c756603295ea09b.mockapi.io/usuarios")
+         this.users=response.data;
+         this.login(this.users)
+        }
+        catch (error)
+        {console.error(error)}
+    }
+
+  }
+};
+      
+    </script> 

@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+<<<<<<< HEAD
         <div class="register-container">
             <h1 class="titulo-registro">Registrarse</h1>
             <form @submit="register">
@@ -24,6 +25,29 @@
         </div>
     </div>
 </template>
+=======
+         <div class="register-container">
+             <h1 class="titulo-registro">Registrarse</h1>
+             <form @submit.prevent="register">
+                 <div class="form-group">
+                     <input type="text" placeholder="Usuario" v-model="usuario" required>
+                 </div>
+                 <div class="form-group">
+                     <input type="password" placeholder="Contraseña" v-model="contrasena" required>
+                 </div>
+                 <div>
+                    <input type="radio" name="tipo" id="restaurante" v-model="tipo" value="restaurante"> Restaurante
+                    <input type="radio" name="tipo" id="consumidor" v-model="tipo" value="consumidor"> Consumidor
+                 </div>
+                 <div class="form-group">
+                     <button class="btn-login" type="submit">Registrarse</button>
+                 </div>
+             </form>
+             
+         </div>
+     </div>
+ </template>
+>>>>>>> c2810e73bf95a23d27f5842cd09552e69b2e4b13
  
  <style scoped>
 .register-container * {
@@ -51,21 +75,31 @@
 
    
  </style>
- <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js">
+<script>
     
-         new Vue({
-             el: '#app',
-             data: {
-                 usuario: '',
-                 contrasena: ''
-             },
-             methods: {
-                 login() {
-                     // Aquí puedes agregar la lógica para manejar la autenticación del usuario.
-                     // Por ejemplo, puedes hacer una solicitud AJAX para verificar las credenciales.
-                     // También puedes utilizar una biblioteca de enrutamiento para Vue.js para navegar a otras páginas.
-                 }
-             }
-         });
-     </script> -->
+    export default {
+  data() {
+    return {
+      usuario: '',
+      contrasena: '',
+      tipo:''
+    };
+  },
+  methods: {
+    register() {
+        if(this.usuario&&this.contrasena&&this.tipo)
+        {
+            this.$router.push('/login');
+            alert(this.usuario+" se registro correctamente como "+this.tipo);
+            
+        }
+        else
+        {
+            alert("Ingrese el tipo de usuario")
+        }
+     
+    }
+  }
+};
+     </script> 
  
