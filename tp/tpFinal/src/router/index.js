@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import InicioConsumidorView from '../views/InicioConsumidorView.vue'
 import DetalleComida from '../views/detalleComida.vue'
+import InicioRestauranteView from '../views/InicioRestaurante.vue'
 
 
 const router = createRouter({
@@ -32,6 +33,11 @@ const router = createRouter({
       path:'/detalleComida/:id',
       name:'detalleComida',
       component:DetalleComida
+    },
+    {
+      path:'/inicioRestaurante',
+      name:'inicioRestaurante',
+      component:InicioRestauranteView
     }
   ]
 })

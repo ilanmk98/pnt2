@@ -34,16 +34,17 @@
   },
   methods: {
     login(param) {
-        console.log(param);
         const usuarioExiste = param.find(user=>user.username===this.usuario)
 
-      if (usuarioExiste) {
-        console.log("existe");
-        if(usuarioExiste.password=this.contrasena)
-        { console.log('Inicio de sesión exitoso');
+      if (usuarioExiste&&usuarioExiste.password==this.contrasena) {
+        if(usuarioExiste.consumer)
+        { console.log('Inicio de sesión Consumer');
         this.$router.push('/inicioConsumidor');}
         else
-        { console.error('Inicio de sesión fallido');}
+        { 
+            console.log('Inicio de sesión Restaurante');
+            this.$router.push('/inicioRestaurante');
+        }
        
       } else {
         alert('Inicio de sesion fallido')
