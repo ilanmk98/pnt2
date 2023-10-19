@@ -76,7 +76,7 @@
    
  </style>
 <script>
-    
+    import axios from 'axios'
     export default {
   data() {
     return {
@@ -87,8 +87,15 @@
   },
   methods: {
     register() {
+        
         if(this.usuario&&this.contrasena&&this.tipo)
         {
+            let user={};
+            user.username=this.usuario;
+            user.password=this.contrasena;
+            user.consumer=this.tipo==='consumidor'?true:false;
+            console.log(user)
+            this.agregar(user)
             this.$router.push('/login');
             alert(this.usuario+" se registro correctamente como "+this.tipo);
             
@@ -98,6 +105,14 @@
             alert("Ingrese el tipo de usuario")
         }
      
+    },
+    async agregar(user){
+        try{
+            await axios.post("https://653071246c756603295ea09b.mockapi.io/usuarios",user)
+            console.log("se guardo en bd");
+        }
+        catch (error)
+        {console.log(error);}
     }
   }
 };
