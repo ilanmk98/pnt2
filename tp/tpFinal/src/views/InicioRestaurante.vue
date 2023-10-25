@@ -10,7 +10,6 @@
        <li v-for="comida in comidasParaAgregar" :key="comida.id">
          {{ comida.nombre }}
          <button @click="agregarComida(comida)">Agregar</button>
-         <button @click="verDetalleComida(comida)">Ver detalles</button>
        </li>
      </ul>
    </div>
@@ -37,9 +36,6 @@
         // Eliminar la comida de la segunda lista
         this.comidasParaAgregar = this.comidasParaAgregar.filter(item => item.id !== comida.id);
       },
-      verDetalleComida(comida) {
-     this.$router.push({ name: 'detalle', params: { id: comida.id } });
-   }
     }
   };
   </script>

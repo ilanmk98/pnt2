@@ -13,7 +13,11 @@
          {{ comida.nombre }}
          <button @click="agregarComida(comida)">Agregar</button>
          <button @click="verDetalleComida(comida)">Ver detalles</button>
-       </li>
+        <!-- Agregar un elemento para mostrar la descripción (expansible) -->
+        <div v-if="comida.mostrarDescripcion">
+          <p>{{ comida.descripcion }}</p>
+        </div>
+      </li>
      </ul>
    </div>
  </template>
@@ -40,8 +44,9 @@
        this.comidasParaAgregar = this.comidasParaAgregar.filter(item => item.id !== comida.id);
      },
      verDetalleComida(comida) {
-    this.$router.push({ name: 'detalle', params: { id: comida.id } });
-  }
+      // Cambiar el estado de mostrar o ocultar la descripción
+      comida.mostrarDescripcion = !comida.mostrarDescripcion;
+    }
    }
  };
  </script>

@@ -30,11 +30,6 @@ const router = createRouter({
       component:InicioConsumidorView
     },
     {
-      path:'/detalleComida/:id',
-      name:'detalleComida',
-      component:DetalleComida
-    },
-    {
       path:'/inicioRestaurante',
       name:'inicioRestaurante',
       component:InicioRestauranteView
