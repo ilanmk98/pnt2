@@ -93,7 +93,7 @@
     },
     async agregar(user){
         try{
-            await axios.post("https://653071246c756603295ea09b.mockapi.io/usuarios",user)
+            await axios.post("https://653071246c756603295ea09b.mockapi.io/user",user)
             console.log("se guardo en bd");
         }
         catch (error)

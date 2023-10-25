@@ -53,7 +53,7 @@
     },
     async cargarLista(){
         try {
-         const response = await axios.get("https://653071246c756603295ea09b.mockapi.io/usuarios")
+         const response = await axios.get("https://653071246c756603295ea09b.mockapi.io/user")
          this.users=response.data;
          this.login(this.users)
         }

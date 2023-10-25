@@ -23,12 +23,12 @@
    data() {
      return {
        comidas: [
-         { id: 1, nombre: "Pizza", descripcion: "Una deliciosa pizza con queso y tomate" },
-         { id: 2, nombre: "Hamburguesa", descripcion: "Una jugosa hamburguesa con papas fritas" },
+         { id: 1, nombre: "Pizza", descripcion: "Una deliciosa pizza con queso y tomate",precio:1 },
+         { id: 2, nombre: "Hamburguesa", descripcion: "Una jugosa hamburguesa con papas fritas",precio:12 },
        ],
        comidasParaAgregar: [
-         { id: 3, nombre: "Sushi", descripcion: "Rollos de sushi frescos y variados" },
-         { id: 4, nombre: "Ensalada", descripcion: "Una ensalada fresca y saludable" },
+         { id: 3, nombre: "Sushi", descripcion: "Rollos de sushi frescos y variados",precio:1 },
+         { id: 4, nombre: "Ensalada", descripcion: "Una ensalada fresca y saludable",precio:1 },
        ]
      };
    },
