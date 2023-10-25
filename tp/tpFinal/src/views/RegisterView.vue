@@ -1,31 +1,6 @@
 <template>
     <div id="app">
-<<<<<<< HEAD
-        <div class="register-container">
-            <h1 class="titulo-registro">Registrarse</h1>
-            <form @submit="register">
-                <div class="form-group">
-                    <input type="text" placeholder="Usuario" v-model="usuario" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Contraseña" v-model="contrasena" required>
-                </div>
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="tipo" id="restaurante"> Restaurante
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="tipo" id="consumidor"> Consumidor
-                    </label>
-                </div>
-                <div class="form-group">
-                    <button class="btn-login" type="submit">Registrarse</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</template>
-=======
+
          <div class="register-container">
              <h1 class="titulo-registro">Registrarse</h1>
              <form @submit.prevent="register">
@@ -39,6 +14,14 @@
                     <input type="radio" name="tipo" id="restaurante" v-model="tipo" value="restaurante"> Restaurante
                     <input type="radio" name="tipo" id="consumidor" v-model="tipo" value="consumidor"> Consumidor
                  </div>
+                  <!-- Campo para la dirección visible cuando se selecciona "Restaurante" -->
+                <div class="form-group" v-if="tipo === 'restaurante'">
+                 <input type="text" placeholder="Dirección" v-model="contacto">
+                </div>
+        <!-- Campo para el teléfono visible cuando se selecciona "Consumidor" -->
+                <div class="form-group" v-if="tipo === 'consumidor'">
+                <input type="text" placeholder="Teléfono" v-model="contacto">
+                </div>
                  <div class="form-group">
                      <button class="btn-login" type="submit">Registrarse</button>
                  </div>
@@ -47,7 +30,7 @@
          </div>
      </div>
  </template>
->>>>>>> c2810e73bf95a23d27f5842cd09552e69b2e4b13
+
  
  <style scoped>
 .register-container * {
@@ -82,7 +65,8 @@
     return {
       usuario: '',
       contrasena: '',
-      tipo:''
+      tipo:'',
+      contacto:''
     };
   },
   methods: {
@@ -94,6 +78,7 @@
             user.username=this.usuario;
             user.password=this.contrasena;
             user.consumer=this.tipo==='consumidor'?true:false;
+            user.contact=this.contacto;
             console.log(user)
             this.agregar(user)
             this.$router.push('/login');
