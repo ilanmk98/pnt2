@@ -13,7 +13,7 @@
          {{ comida.name }} - Precio: {{ comida.price }}
          <button @click="agregarComida(comida)">Agregar</button>
          <button @click="verDetalleComida(comida)">Ver detalles</button>
-        <!-- Agregar un elemento para mostrar la descripción (expansible) -->
+
         <div v-if="comida.mostrarDescripcion">
           <p>{{ comida.descripcion }}</p>
         </div>
@@ -56,7 +56,7 @@
         }
         catch (error)
         {console.error(error)}
-e68c6e2dbef6e5731d850e4a83fcda1271b253
+
     }
    }
  };
