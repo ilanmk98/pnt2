@@ -35,11 +35,14 @@
   methods: {
     login(param) {
         const usuarioExiste = param.find(user=>user.username===this.usuario)
-
       if (usuarioExiste&&usuarioExiste.password==this.contrasena) {
         if(usuarioExiste.consumer)
-        { console.log('Inicio de sesión Consumer');
-        this.$router.push('/inicioConsumidor');}
+        { 
+        console.log(usuarioExiste)
+        console.log('Inicio de sesión Consumer');
+        const pasoPorParam = JSON.stringify(usuarioExiste)
+        this.$router.push({ name: 'inicioConsumidor', params:  {user: pasoPorParam}  });
+      }
         else
         { 
             console.log('Inicio de sesión Restaurante');

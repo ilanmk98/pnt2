@@ -25,7 +25,7 @@ const router = createRouter({
       component:RegisterView
     },
     {
-      path:'/inicioConsumidor',
+      path:'/inicioConsumidor/:user',
       name:'inicioConsumidor',
       component:InicioConsumidorView
     },
