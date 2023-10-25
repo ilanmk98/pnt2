@@ -13,7 +13,11 @@
          {{ comida.name }} - Precio: {{ comida.price }}
          <button @click="agregarComida(comida)">Agregar</button>
          <button @click="verDetalleComida(comida)">Ver detalles</button>
-       </li>
+        <!-- Agregar un elemento para mostrar la descripción (expansible) -->
+        <div v-if="comida.mostrarDescripcion">
+          <p>{{ comida.descripcion }}</p>
+        </div>
+      </li>
      </ul>
    </div>
  </template>
@@ -40,6 +44,7 @@
        this.comidasParaAgregar = this.comidasParaAgregar.filter(item => item.id !== comida.id);
      },
      verDetalleComida(comida) {
+
     this.$router.push({ name: 'detalle', params: { id: comida.id } });
   },
   async cargarLista(){
@@ -51,6 +56,7 @@
         }
         catch (error)
         {console.error(error)}
+e68c6e2dbef6e5731d850e4a83fcda1271b253
     }
    }
  };
