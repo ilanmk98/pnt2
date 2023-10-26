@@ -3,14 +3,17 @@
      <h1>Mis reservas</h1>
      <ul>
        <li v-for="comida in comidas" :key="comida.id">
-         {{ comida.name }} - {{ comida.description }} - Precio: {{ comida.price }}
+        <div v-if="comida.quantity > 0">
+          {{ comida.name }} - {{ comida.description }} - Precio: {{ comida.price }}
+        </div>
+         
        </li>
      </ul>
  
      <h2>Comidas disponibles</h2>
      <ul>
        <li v-for="comida in comidasParaAgregar" :key="comida.id">
-         {{ comida.name }} - Precio: {{ comida.price }}
+         {{ comida.name }} - Precio: {{ comida.price }} 
          <button @click="agregarComida(comida)">Agregar</button>
          <button @click="verDetalleComida(comida)">Ver detalles</button>
 
@@ -26,9 +29,8 @@
  import axios from 'axios'
  export default {
   async created() {
-    const user = JSON.parse(this.$route.params.user);
-    console.log(user.username);
-    this.cargarLista()
+    this.cargarListaAgregar()
+    this.cargarComidasUsuario()
   },
    data() {
      return {
@@ -42,21 +44,72 @@
       console.log(user.username);
        this.comidas.push(comida);
        this.comidasParaAgregar = this.comidasParaAgregar.filter(item => item.id !== comida.id);
+       this.restarUnidad(comida)
+       this.guardarComidaUsuario(comida,user)
+       
      },
      verDetalleComida(comida) {
 
     this.$router.push({ name: 'detalle', params: { id: comida.id } });
   },
-  async cargarLista(){
+
+  async restarUnidad(comidaActualizada) {
+    console.log(comidaActualizada);
+    comidaActualizada.quantity=comidaActualizada.quantity-1;
+    console.log(comidaActualizada);
+  try {
+    const url = `https://653071246c756603295ea09b.mockapi.io/food/${comidaActualizada.id}`;
+    const response = await axios.put(url, comidaActualizada);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+},
+  async cargarListaAgregar(){
         try {
          const response = await axios.get("https://653071246c756603295ea09b.mockapi.io/food")
+
          this.comidasParaAgregar=response.data
-         console.log(this.comidasParaAgregar)
+         this.comidasParaAgregar=this.comidasParaAgregar.filter(comida=>comida.quantity>0)
          
         }
         catch (error)
         {console.error(error)}
-
+    },
+    async cargarComidasUsuario(){
+      try{
+        const response = await axios.get("https://653997c3e3b530c8d9e88826.mockapi.io/pnt2/foodbyuser")
+        this.foodbyuser = response.data
+        const user = JSON.parse(this.$route.params.user);
+        let userfoods = this.foodbyuser.filter(fbu=>fbu.userid===user.id)
+        userfoods = userfoods.map(userfood=>userfood.foodid)
+        const response2 = await axios.get("https://653071246c756603295ea09b.mockapi.io/food")
+        this.totalcomidas=response2.data
+        this.comidas=this.totalcomidas.filter(comida=>userfoods.includes(comida.id))
+        
+      }
+      catch (error)
+      {
+        console.log(error);
+      }
+    },
+    async guardarComidaUsuario(comida,user)
+    {
+      console.log(comida);
+      console.log(user);
+      const foodbyid={}
+      foodbyid.foodid=comida.id
+      foodbyid.userid=user.id
+      console.log(foodbyid);
+      try
+      {
+        await axios.post("https://653997c3e3b530c8d9e88826.mockapi.io/pnt2/foodbyuser",foodbyid)
+        console.log("se guardo");
+      }
+      catch (error)
+      {
+        console.log(error)
+      }
     }
    }
  };
