@@ -12,6 +12,12 @@
          <button @click="agregarComida(comida)">Agregar</button>
        </li>
      </ul>
+     <h2>Agregar Comidas</h2>
+     <input v-model="comida.id" placeholder="ID"> 
+         <input v-model="comida.nombre" placeholder="nombre">
+         <input v-model="comida.descripcion" placeholder="descripcion"><br>
+         <input v-model="comida.precio" placeholder="precio">
+         <button @click="agregarComida(comida)">Agregar</button>
    </div>
 
   </template>
@@ -19,6 +25,7 @@
   export default {
     data() {
       return {
+        comida:{id:'',nombre: '', descripcion:'', precio:''},
         comidasPublicadas: [
           { id: 1, nombre: "Fideos a la bolognesa", descripcion: "Riquisimos fideos del tano",precio:1 },
           { id: 2, nombre: "Hamburguesa", descripcion: "Una jugosa hamburguesa con papas fritas",precio:12 },
@@ -30,6 +37,10 @@
       };
     },
     methods: {
+      agregarComidaNueva(){
+          this.comidasPublicadas.push(this.comida)
+          this.comida = {nombre:'', descripcion:''}
+        },
       agregarComida(comida) {
         // Agregar la comida seleccionada a la primera lista
         this.comidasPublicadas.push(comida);
