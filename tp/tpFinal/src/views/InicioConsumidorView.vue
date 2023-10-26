@@ -13,7 +13,7 @@
      <h2>Comidas disponibles</h2>
      <ul>
        <li v-for="comida in comidasParaAgregar" :key="comida.id">
-         {{ comida.name }} - Precio: {{ comida.price }} 
+         {{ comida.name }}
          <button @click="agregarComida(comida)">Agregar</button>
          <button @click="verDetalleComida(comida)">Ver detalles</button>
 
@@ -22,6 +22,7 @@
             <h3>Detalles de {{ comida.name }}</h3>
             <h3>{{ comida.description }}</h3>
             <h3>Cantidad:{{ comida.quantity }}</h3>
+            <h3>Precio:{{ comida.price }}$</h3>
             <button @click="comida.mostrarDescripcion = false">Cerrar</button>
           </div>
         </div>
