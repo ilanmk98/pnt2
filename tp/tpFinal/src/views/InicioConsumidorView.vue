@@ -17,8 +17,13 @@
          <button @click="agregarComida(comida)">Agregar</button>
          <button @click="verDetalleComida(comida)">Ver detalles</button>
 
-        <div v-if="comida.mostrarDescripcion">
-          <p>{{ comida.descripcion }}</p>
+         <div v-if="comida.mostrarDescripcion" class="modal">
+          <div class="modal-content">
+            <h3>Detalles de {{ comida.name }}</h3>
+            <h3>{{ comida.description }}</h3>
+            <h3>Cantidad:{{ comida.quantity }}</h3>
+            <button @click="comida.mostrarDescripcion = false">Cerrar</button>
+          </div>
         </div>
       </li>
      </ul>
@@ -50,7 +55,7 @@
      },
      verDetalleComida(comida) {
 
-    this.$router.push({ name: 'detalle', params: { id: comida.id } });
+      comida.mostrarDescripcion = true;
   },
 
   async restarUnidad(comidaActualizada) {
@@ -114,3 +119,24 @@
    }
  };
  </script>
+ <style>
+ .modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+ }
+ 
+ .modal-content {
+   background: black;
+   padding: 20px;
+   border-radius: 5px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+ }
+ </style>

@@ -33,6 +33,10 @@ const router = createRouter({
       path:'/inicioRestaurante',
       name:'inicioRestaurante',
       component:InicioRestauranteView
+    },
+    {path:'/detalleComida',
+     name:'detalleComida',
+     component:DetalleComida
     }
   ]
 })
