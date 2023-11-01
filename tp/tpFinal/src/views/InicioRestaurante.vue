@@ -3,6 +3,7 @@
     <h1>Mis comidas publicadas</h1>
     <li v-for="comida in comidasPublicadas" :key="comida.id">
        {{ comida.name }} - {{ comida.description }} - {{ comida.quantity }}
+       <button @click="eliminarComidaPublicada(comida)">Eliminar</button>
      </li>
   
     
@@ -59,9 +60,7 @@ export default {
         }
     },
     agregarComida(comida) {
-      // Agregar la comida seleccionada a la primera lista
       this.comidasPublicadas.push(comida);
-      // Eliminar la comida de la segunda lista
       this.comidasParaAgregar = this.comidasParaAgregar.filter(item => item.id !== comida.id);
     },
     async cargarComidas(){
@@ -73,6 +72,21 @@ export default {
       console.log(comidasRest);
       this.comidasPublicadas=comidasRest
 
+    },
+    eliminarComidaPublicada(comida){
+        this.eliminardeBd(comida.id)
+    },
+    async eliminardeBd(idComida){
+      try{
+        await axios.delete(`https://653071246c756603295ea09b.mockapi.io/food/${idComida}`)
+        console.log("Eliminado de Bd");
+        this,this.cargarComidas()
+      }
+      catch(error)
+      {
+        console.error(error)
+      }
+        
     },
   }
 };
