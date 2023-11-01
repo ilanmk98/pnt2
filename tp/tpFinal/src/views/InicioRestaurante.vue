@@ -42,7 +42,6 @@ export default {
         comida.restaurantid=Number(user.id)
         console.log(comida)
         this.agregarABD(comida)
-        alert(comida + " se agrego correctamente como "+ this.nombre);
         
         comida = {name:'', 
         description:'',

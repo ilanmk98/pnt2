@@ -3,7 +3,7 @@
      <h1>Mis reservas</h1>
      <ul>
        <li v-for="comida in comidas" :key="comida.id">
-        <div v-if="comida.quantity > 0">
+        <div>
           {{ comida.name }} - {{ comida.description }} - Precio: {{ comida.price }}
         </div>
          
@@ -13,10 +13,11 @@
      <h2>Comidas disponibles</h2>
      <ul>
        <li v-for="comida in comidasParaAgregar" :key="comida.id">
+        <div v-if="comida.quantity>0">
          {{ comida.name }}
          <button @click="agregarComida(comida)">Agregar</button>
          <button @click="verDetalleComida(comida)">Ver detalles</button>
-
+        </div>
          <div v-if="comida.mostrarDescripcion" class="modal">
           <div class="modal-content">
             <h3>Detalles de {{ comida.name }}</h3>
