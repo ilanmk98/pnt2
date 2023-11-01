@@ -32,32 +32,6 @@
  </template>
 
  
- <style scoped>
-.register-container * {
-        font-size: 50px; /* Aumentar el tamaño de fuente */
-        text-align: center;
-    }
-
-
-    .radio-label {
-        font-size: 40px; /* Tamaño de fuente para los radio buttons */
-    }
-    button {
-        background-color: #10f136;
-        color: #ffffff;
-        padding: 10px 20px;
-        border: none;
-        cursor: pointer;
-    }
-
-    .titulo-registro {
-        color: #10f136;
-        
-    }
-
-
-   
- </style>
 <script>
     import axios from 'axios'
     export default {

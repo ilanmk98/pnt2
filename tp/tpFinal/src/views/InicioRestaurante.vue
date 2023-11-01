@@ -28,7 +28,6 @@ export default {
       name: '', 
       description:'', 
       price:null, 
-      //userID: '',
       quantity: null },
       comidasPublicadas: []
     };
