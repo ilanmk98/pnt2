@@ -46,7 +46,8 @@
         else
         { 
             console.log('Inicio de sesión Restaurante');
-            this.$router.push('/inicioRestaurante');
+            const pasoPorParam = JSON.stringify(usuarioExiste)
+            this.$router.push({ name: 'inicioRestaurante', params:  {user: pasoPorParam}  });
         }
        
       } else {

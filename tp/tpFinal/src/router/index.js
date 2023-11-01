@@ -29,7 +29,7 @@ const router = createRouter({
       component:InicioConsumidorView
     },
     {
-      path:'/inicioRestaurante',
+      path:'/inicioRestaurante/:user',
       name:'inicioRestaurante',
       component:InicioRestauranteView
     }

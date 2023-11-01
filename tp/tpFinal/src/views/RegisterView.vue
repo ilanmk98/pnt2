@@ -14,11 +14,11 @@
                     <input type="radio" name="tipo" id="restaurante" v-model="tipo" value="restaurante"> Restaurante
                     <input type="radio" name="tipo" id="consumidor" v-model="tipo" value="consumidor"> Consumidor
                  </div>
-                  <!-- Campo para la dirección visible cuando se selecciona "Restaurante" -->
+                  
                 <div class="form-group" v-if="tipo === 'restaurante'">
                  <input type="text" placeholder="Dirección" v-model="contacto">
                 </div>
-        <!-- Campo para el teléfono visible cuando se selecciona "Consumidor" -->
+       
                 <div class="form-group" v-if="tipo === 'consumidor'">
                 <input type="text" placeholder="Teléfono" v-model="contacto">
                 </div>
