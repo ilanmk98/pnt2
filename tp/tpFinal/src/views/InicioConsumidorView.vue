@@ -48,9 +48,8 @@
    methods: {
      agregarComida(comida) {
       const user = JSON.parse(this.$route.params.user);
-      console.log(user.username);
        this.comidas.push(comida);
-       this.comidasParaAgregar = this.comidasParaAgregar.filter(item => item.id !== comida.id);
+       //this.comidasParaAgregar = this.comidasParaAgregar.filter(item => item.id !== comida.id);
        this.restarUnidad(comida)
        this.guardarComidaUsuario(comida,user)
        
@@ -88,9 +87,10 @@
         const response = await axios.get("https://653997c3e3b530c8d9e88826.mockapi.io/pnt2/foodbyuser")
         this.foodbyuser = response.data
         const user = JSON.parse(this.$route.params.user);
-        let userfoods = this.foodbyuser.filter(fbu=>fbu.userid===user.id)
+        let userfoods = this.foodbyuser.filter(fbu=>fbu.userid===user)
         userfoods = userfoods.map(userfood=>userfood.foodid)
         const response2 = await axios.get("https://653071246c756603295ea09b.mockapi.io/food")
+        console.log(response2.data);
         this.totalcomidas=response2.data
         this.comidas=this.totalcomidas.filter(comida=>userfoods.includes(comida.id))
         
@@ -102,11 +102,9 @@
     },
     async guardarComidaUsuario(comida,user)
     {
-      console.log(comida);
-      console.log(user);
       const foodbyid={}
       foodbyid.foodid=comida.id
-      foodbyid.userid=user.id
+      foodbyid.userid=user
       console.log(foodbyid);
       try
       {
@@ -121,3 +119,25 @@
    }
  };
  </script>
+
+<style>
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: black;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+</style>

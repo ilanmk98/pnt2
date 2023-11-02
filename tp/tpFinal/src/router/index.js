@@ -3,6 +3,8 @@ import HomeView from '../views/HomeView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import InicioConsumidorView from '../views/InicioConsumidorView.vue'
 import InicioRestauranteView from '../views/InicioRestaurante.vue'
+import OlvidasteContrasena from '../views/OlvidasteContrasena.vue'
+import AdminView from '../views/AdminView.vue'
 
 
 const router = createRouter({
@@ -32,6 +34,16 @@ const router = createRouter({
       path:'/inicioRestaurante/:user',
       name:'inicioRestaurante',
       component:InicioRestauranteView
+    },
+    {
+      path:'/olvidasteContrasena',
+      name:'OlvidasteContrasena',
+      component:OlvidasteContrasena
+    },
+    {
+      path:'/admin',
+      name:'Admin',
+      component:AdminView
     }
   ]
 })

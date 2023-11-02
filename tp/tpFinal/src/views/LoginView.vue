@@ -13,7 +13,7 @@
                     <button class="btn-login" type="submit">Ingresar</button>
                 </div>
             </form>
-            <a class="btn-forgot-password" href="#">¿Olvidaste tu contraseña?</a>
+            <a class="btn-forgot-password" href="/olvidasteContrasena">¿Olvidaste tu contraseña?</a>
             <br>
             <a class="btn-register" href="/register">Registrarse</a>
         </div>
@@ -25,6 +25,7 @@
 </style>
  <script>
  import axios from 'axios'
+import router from '../router';
   export default {
   data() {
     return {
@@ -34,19 +35,25 @@
   },
   methods: {
     login(param) {
-        const usuarioExiste = param.find(user=>user.username===this.usuario)
-      if (usuarioExiste&&usuarioExiste.password==this.contrasena) {
+      const usuarioExiste = param.find(user=>user.username===this.usuario)
+      if(this.usuario==='admin'&&this.contrasena==='admin')
+      {
+        this.$router.push('/admin')
+      }
+        
+      else if (usuarioExiste&&usuarioExiste.password==this.contrasena) {
+        
         if(usuarioExiste.consumer)
         { 
         console.log(usuarioExiste)
         console.log('Inicio de sesión Consumer');
-        const pasoPorParam = JSON.stringify(usuarioExiste)
+        const pasoPorParam = JSON.stringify(usuarioExiste.id)
         this.$router.push({ name: 'inicioConsumidor', params:  {user: pasoPorParam}  });
       }
         else
         { 
             console.log('Inicio de sesión Restaurante');
-            const pasoPorParam = JSON.stringify(usuarioExiste)
+            const pasoPorParam = JSON.stringify(usuarioExiste.id)
             this.$router.push({ name: 'inicioRestaurante', params:  {user: pasoPorParam}  });
         }
        

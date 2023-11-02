@@ -1,20 +1,12 @@
 <template>
-  <div>
-    <h1>Mis comidas publicadas</h1>
-    <li v-for="comida in comidasPublicadas" :key="comida.id">
-       {{ comida.name }} - {{ comida.description }} - {{ comida.quantity }}
-       <button @click="eliminarComidaPublicada(comida)">Eliminar</button>
-     </li>
-  
-    
-   <h2>Agregar Comidas</h2>
-       <input v-model="comida.name" placeholder="nombre"><br>
-       <input v-model="comida.description" placeholder="descripcion"><br>
-       <input v-model="comida.price" placeholder="precio" type="number">
-       <input v-model="comida.quantity" placeholder="cantidad" type="number">
-       <button @click="agregarComidaNueva(comida)">Agregar</button>
- </div>
-
+<div>
+    <h1>Usuarios</h1>
+    <ul>
+      <li v-for="user in usuarios" :key="user.id">
+        {{ user.username }} ({{ user.consumer ? 'Consumer' : 'No Consumer' }}) - Contacto: {{ user.contact }}
+      </li>
+    </ul>
+  </div>
 </template>
 <script>
  import axios from 'axios'
@@ -38,7 +30,7 @@ export default {
         console.log(this.$route.params.user);
         this.comidasPublicadas.push(comida)
         const user = JSON.parse(this.$route.params.user);
-        comida.restaurantid=Number(user.id)
+        comida.restaurantid=Number(user)
         console.log(comida)
         this.agregarABD(comida)
         
@@ -66,7 +58,7 @@ export default {
       const user = JSON.parse(this.$route.params.user);
       const comidas = response.data
       console.log(comidas);
-      const comidasRest = comidas.filter(comida=>comida.restaurantid==user.id)
+      const comidasRest = comidas.filter(comida=>comida.restaurantid==user)
       console.log(comidasRest);
       this.comidasPublicadas=comidasRest
 
@@ -78,7 +70,7 @@ export default {
       try{
         await axios.delete(`https://653071246c756603295ea09b.mockapi.io/food/${idComida}`)
         console.log("Eliminado de Bd");
-        this,this.cargarComidas()
+        this.cargarComidas()
       }
       catch(error)
       {
