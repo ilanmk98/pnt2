@@ -1,12 +1,20 @@
 <template>
 <div>
-    <h1>Usuarios</h1>
-    <ul>
-      <li v-for="user in usuarios" :key="user.id">
-        {{ user.username }} ({{ user.consumer ? 'Consumer' : 'No Consumer' }}) - Contacto: {{ user.contact }}
-      </li>
-    </ul>
-  </div>
+    <h1>Mis comidas publicadas</h1>
+    <li v-for="comida in comidasPublicadas" :key="comida.id">
+       {{ comida.name }} - {{ comida.description }} - {{ comida.quantity }}
+       <button @click="eliminarComidaPublicada(comida)">Eliminar</button>
+     </li>
+
+
+   <h2>Agregar Comidas</h2>
+       <input v-model="comida.name" placeholder="nombre"><br>
+       <input v-model="comida.description" placeholder="descripcion"><br>
+       <input v-model="comida.price" placeholder="precio" type="number">
+       <input v-model="comida.quantity" placeholder="cantidad" type="number">
+       <button @click="agregarComidaNueva(comida)">Agregar</button>
+ </div>
+
 </template>
 <script>
  import axios from 'axios'
